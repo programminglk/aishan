@@ -26,5 +26,18 @@ export default {
         'Key Researches',
         'Process'
     ],
+
+    thesis_element_dropzones: [
+        'Abstract',
+        'Introduction',
+        'Literature Review',
+        'Technology',
+        'Approach',
+        'Design',
+        'Implementation',
+        'Evaluation',
+        'Conclusion',
+    ],
+
 }
 

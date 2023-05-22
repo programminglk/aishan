@@ -1,4 +1,9 @@
-import Image from 'next/image'
+'use client'
+
+import DragableThesisElementComponent from './componets/DragableThesisElementComponent';
+import DropzoneThesisElementsComponent from './componets/DropzoneThesisElementsComponent';
+
+import { React } from 'react';
 
 import app_vals from './locales/app_values';
 
@@ -25,23 +30,19 @@ export default function Home() {
         </div>
 
         {/* right panel. i.e game display pannel */}
-        <div className='flex flex-col bg-gray-100 p-2 sm:w-9/12 items-start sm:min-h-screen'>
+        <div className='flex flex-col bg-gray-100 p-2 sm:w-9/12 items-start sm:min-h-screen overflow-y-scroll'>
         
           {/* Thesis outline, i.e drop outer container */}
-          <div className='flex flex-col w-full h-3/5'>
+          <div className='flex flex-col w-full h-4/6 overflow-y-scroll'>
             
-            {/* Abstract div */}
-            <div className='flex flex-col'>
-     
-              <div className='flex flex-row rounded-sm w-1/4 justify-center pl-3 pr-3 pt-1 pb-1 bg-gray-700'>
-                <p className='text-md text-white'> Abstract </p>
-              </div>
-    
-              {/* elements drop container */}
-              <div className='flex flex-col ml-5 mt-2 bg-blue-200'>
-                hi
-              </div>
-            </div>
+            {
+              app_vals.thesis_element_dropzones.map((dropzone, index) => {
+                return (
+                  <DropzoneThesisElementsComponent element={dropzone} index={index} />
+                )
+              })
+            }
+            
           </div>
 
           <hr className='w-full border-1 border-gray-300 my-2' />
@@ -52,10 +53,7 @@ export default function Home() {
             {
               app_vals.thesis_elements.sort(() => Math.random() - 0.5).map((element, index) => {
                 return (
-                  <div key={index} className='flex justify-center bg-green-200 p-2 m-2 
-                  rounded-md hover:bg-gray-500 text-black hover:text-white text-sm'>
-                    {element}
-                  </div>
+                  <DragableThesisElementComponent element={element} index={index} />
                 )
               })
             }
