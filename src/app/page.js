@@ -1,6 +1,6 @@
 'use client'
 
-import DragableThesisElementComponent from './componets/DragableThesisElementComponent';
+import ThesisElementStaticComponent from './componets/ThesisElementStaticComponent';
 import DropzoneThesisElementsComponent from './componets/DropzoneThesisElementsComponent';
 
 import { React } from 'react';
@@ -53,7 +53,7 @@ export default function Home() {
             {
               app_vals.thesis_elements.sort(() => Math.random() - 0.5).map((element, index) => {
                 return (
-                  <DragableThesisElementComponent element={element} index={index} />
+                  <ThesisElementStaticComponent element={element} index={index} />
                 )
               })
             }
