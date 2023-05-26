@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import interact from 'interactjs';
 
-const ThesisElementMovableComponent = ({index, element}) => {
+const ThesisElementMovableComponent = ({index, element, handleMovableElementDrop}) => {
   const draggableRef = useRef(null);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const ThesisElementMovableComponent = ({index, element}) => {
             const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
             const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
         
-            // Then we are using the css property “transform” to translate the (or change) 
+            // Then we are using the css property "transform" to translate the (or change) 
             // the position of the element to the new position:
             target.style.transform = `translate(${x}px, ${y}px)`;
         
@@ -37,8 +37,32 @@ const ThesisElementMovableComponent = ({index, element}) => {
         // Remove the CSS class when dragging ends
         onend: (event) => {
             event.target.classList.remove('dragging');
+
+            //get dropped zone
+            const droppedZone = event.relatedTarget;
+            let droppedZoneId = null
+            if (droppedZone != null) {
+                droppedZoneId = droppedZone.id;
+            } 
+            console.log("comming from moved element droppedZone: ", droppedZoneId);
+
+            // get dropped element text
+            const droppedElementText = event.target.innerText;
+            handleMovableElementDrop(event.target.id, droppedElementText,  droppedZoneId)
         },
 
+    }).resizable({
+        edges: { left: false, right: true, bottom: false, top: false },
+        modifiers: [
+          interact.modifiers.restrictSize({
+            min: { width: 100 }, // Set the minimum width of the div
+            max: { width: 500 }, // Set the maximum width of the div
+          }),
+        ],
+        inertia: true, // Enable inertia for smooth resizing
+    }).on('resizemove', (event) => {
+        const { width } = event.rect;
+        draggableElement.style.width = `${width}px`;
     });
 
 
@@ -46,6 +70,7 @@ const ThesisElementMovableComponent = ({index, element}) => {
         const divToRemove = event.target;
         if (divToRemove.classList.contains('movable_element')) {
             event.preventDefault();
+            handleMovableElementDrop(event.target.id, "DELETE",  null)
             divToRemove.remove();
         }
     };
@@ -63,9 +88,9 @@ const ThesisElementMovableComponent = ({index, element}) => {
     <div ref={draggableRef}
         key={index}
         className='movable_element absolute z-50
-        flex justify-center bg-yellow-200 p-2 m-2 rounded-md hover:bg-gray-500 
+        flex justify-center bg-yellow-200 pt-0.5 pb-0.5 pl-2 pr-2 m-2 m-1 rounded-md hover:bg-yellow-600 
          text-black hover:text-white text-sm border-2 border-gray-300'
-        id={element + '_' + index}
+        id={'movable_' + element + '_' + index}
     >
         {element}
     </div>
