@@ -21,23 +21,43 @@ const dropZoneAndMovableElementsSTATICObj = {
   Conclusion: new Set(),
 }
 
+var totalScore = 0;
+// iterate over the object app_vals.dropzone_thesis_element_scores
+Object.entries(app_vals.dropzone_thesis_element_scores).forEach(([key, value]) => {
+  Object.entries(value).forEach(([key2, value2]) => {
+    totalScore += value2[0];
+  });
+});
+
+console.log("totalScore: ", totalScore);
 
 export default function Home() {
 
-  
-  // const [dropZoneAndMovableElementsMap, setDropZoneAndMovableElementsMap] = useState({
-  //   Abstract: new Set(),
-  //   Introduction: new Set(),
-  //   'Literature Review': new Set(),
-  //   Technology: new Set(),
-  //   Approach: new Set(),
-  //   Design: new Set(),
-  //   Implementation: new Set(),
-  //   Evaluation: new Set(),
-  //   Conclusion: new Set(),
-  // });
+  const [elementMoved, setElementMoved] = useState(0);
+  const [score, setScore] = useState(0);
 
-  const [elementMoved, setElementMoved] = useState(false);
+
+  const calculateScore = () => {
+    console.log("in calculateScore");
+    var reward = 0;
+    Object.entries(dropZoneAndMovableElementsSTATICObj).forEach(([key, value]) => {
+      value && value.forEach((id) => {
+
+        let startIndex = id.indexOf("_") + 1; // Find the index of the first "_" and add 1 to exclude it
+        let endIndex = id.lastIndexOf("_"); // Find the index of the last "_"
+        let el = id.substring(startIndex, endIndex);
+
+        if (app_vals.dropzone_thesis_element_scores[key][el] !== undefined) {
+          reward += app_vals.dropzone_thesis_element_scores[key][el][0];
+        }
+      });
+    });
+    console.log("///// ==> reward: ", reward);
+    
+    var score_percentage = reward //+ reward;
+    score_percentage = (totalScore / 100) * score_percentage;
+    setScore(score_percentage);
+  }
 
 
   useEffect(() => {
@@ -50,6 +70,8 @@ export default function Home() {
       });
     });
     console.log("allMovableElementIds: ", allMovableElementIdsInMap);
+
+    calculateScore();
 
   }, [elementMoved]);
 
@@ -71,7 +93,8 @@ export default function Home() {
       // allMovableElementIdsInMap.delete(movableElementId);
       movableElementIdtoDropZoneMap[movableElementId] = null;
       dropZoneAndMovableElementsSTATICObj[previousDropZone].delete(movableElementId);
-      setElementMoved(!elementMoved);  
+      setElementMoved(elementMoved + 1);  
+      calculateScore();
 
       
     }
@@ -93,7 +116,8 @@ export default function Home() {
       console.log("dropZoneAndMovableElementsSTATICObj: ", dropZoneAndMovableElementsSTATICObj);
 
 
-      setElementMoved(!elementMoved);
+      setElementMoved(elementMoved + 1);
+      calculateScore();
     }
   
     // if movable element was in a dropzone before, and now in a different dropZone, then remove it from the previous dropZone and add it to the new dropZone
@@ -110,7 +134,9 @@ export default function Home() {
       dropZoneAndMovableElementsSTATICObj[previousDropZone].delete(movableElementId);
       dropZoneAndMovableElementsSTATICObj[dropZone].add(movableElementId);
       console.log("dropZoneAndMovableElementsSTATICObj: ", dropZoneAndMovableElementsSTATICObj);
-      setElementMoved(!elementMoved);     
+      console.log("calling elementMoved hook elementMoved: ", elementMoved);
+      setElementMoved(elementMoved + 1); 
+      calculateScore();    
 
     }
   
@@ -121,12 +147,12 @@ export default function Home() {
       console.log("movableElementIdtoDropZoneMap: ", movableElementIdtoDropZoneMap);
       console.log("movableElementIdtoDropZoneMap[movableElementId]: ", movableElementIdtoDropZoneMap[movableElementId]);
       console.log("dropZoneAndMovableElementsSTATICObj: ", dropZoneAndMovableElementsSTATICObj);
-      console.log("dropZoneAndMovableElementsSTATICObj: ", dropZoneAndMovableElementsSTATICObj[movableElementIdtoDropZoneMap[movableElementId]]);
 
       allMovableElementIdsInMap.delete(movableElementId);
       movableElementIdtoDropZoneMap[movableElementId] && delete movableElementIdtoDropZoneMap[movableElementId];
       dropZone && dropZoneAndMovableElementsSTATICObj[dropZone].delete(movableElementId);
-      setElementMoved(!elementMoved);     
+      setElementMoved(elementMoved + 1);   
+      calculateScore();  
     }
   
     // if movable element was not in a dropzone before, and now not in a dropZone, then do nothing
@@ -168,6 +194,13 @@ export default function Home() {
               })
             }
 
+          </div>
+
+          <hr className='w-full border-1 border-gray-200 mt-12' />
+
+          {/* Score Display section */}
+          <div className='flex flex-col w-full items-center'>
+            <p className='text-7xl text-white sm:pt-5 sm:mt-20'> {score.toFixed(2)}% </p>
           </div>
           
         </div>

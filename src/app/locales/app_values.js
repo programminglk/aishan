@@ -41,117 +41,42 @@ export default {
 
     dropzone_thesis_element_scores: {
         'Abstract': {
-            'Output': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Curiosity': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Users': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Conclusion': {
-                    score: 2,
-                    explanation: ""
-            },
+            'Output': [2, ''],
+            'Curiosity': [2, ''],
+            'Users': [2, ''],
+            'Conclusion': [2, ''],
         },
         'Introduction': {
-            'Curiosity': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Users': {
-                    score: 2,
-                    explanation: ""
-            },
+            'Curiosity': [2, ''],
+            'Users': [2, ''],
 
-            'Citation': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Output': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Objectives': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Conclusion': {
-                    score: 2,
-                    explanation: ""
-            }, 
+            'Citation': [2, ''],
+            'Output': [2, ''],
+            'Objectives': [2, ''],
+            'Conclusion': [2, ''],
         },
         'Literature Review': {
-            'Citation': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Problem': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Technology': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Objectives': {
-                    score: 2,
-                    explanation: 'First two of the objectives in any research is: 1. Doing a criticial review of the problem area. \
+            'Citation': [2, ''],
+            'Problem': [2, ''],
+            'Technology': [2, ''],
+            'Objectives': [2, 'First two of the objectives in any research is: 1. Doing a criticial review of the problem area. \
                                 2. Reviewing the Technologies that are being used to solve the problem. Hence At the stage of litrature review, \
-                                these two objectives should be covered.'
-            },
+                                these two objectives should be covered.'], 
         }, 
         'Technology': {
-            'Technology': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Citiation': {
-                    score: 2,
-                    explanation: ""
-            },
+            'Technology': [2, ''],
+            'Citiation':  [2, ''],
         },
         'Approach': {
-            'Hypothesis': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Input': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Output': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Process': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Design': {
-                    score: 1,
-                    explanation: ""
-            },
-            'Implementation': {
-                    score: 1,
-                    explanation: ""
-            },
-            'Evaluation': {
-                    score: 1,
-                    explanation: ""
-            },
-            'Features': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Users': {
-                    score: 2,
-                    explanation: ""
-            },
+            'Hypothesis': [2, ''],
+            'Input': [2, ''],
+            'Output': [2, ''],
+            'Process': [2, ''],
+            'Design': [2, ''],
+            'Implementation': [2, ''],
+            'Evaluation': [2, ''],
+            'Features': [2, ''],
+            'Users': [2, ''],
         },
         'Design': {
 
@@ -160,32 +85,14 @@ export default {
 
         },
         'Evaluation': {
-            'Output': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Users': {
-                    score: 2,
-                    explanation: ""
-            },
+            'Output':  [2, ''],
+            'Users': [2, ''],
         },
         'Conclusion': {
-            'Users': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Conclusion': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Objectives': {
-                    score: 2,
-                    explanation: ""
-            },
-            'Limitations': {
-                    score: 2,
-                    explanation: ""
-            },
+            'Users': [2, ''],
+            'Conclusion': [2, ''],
+            'Objectives': [2, ''],
+            'Limitations': [2, ''],
         }
     }
 }

@@ -18,52 +18,6 @@ const DropzoneThesisElementsComponent = ({element, index, dropZoneMovableElement
 
   const [dropZoneStyle, setDropZoneStyle] = useState(dropzone_no_elements_style);
 
-  const dropZoneAcceptedElements = Object.keys(app_vals.dropzone_thesis_element_scores[element]);
-
-  console.log("===> Coming from DROP ZONE <============");
-
-
-  useEffect(() => {
-    // console.log("===> Coming from DROP ZONE: dropZoneMovableElements: ", dropZoneMovableElements);
-    if(dropZoneMovableElements.size > 0) {
-      console.log("===> Coming from DROP ZONE: dropZoneMovableElements: ", dropZoneMovableElements);
-      var dropZoneElements = [];
-
-      dropZoneMovableElements.forEach(element => {
-        console.log(element); // 
-
-        let startIndex = element.indexOf("_") + 1; // Find the index of the first "_" and add 1 to exclude it
-        let endIndex = element.lastIndexOf("_"); // Find the index of the last "_"
-        let el = element.substring(startIndex, endIndex);
-        dropZoneElements.push(el);
-      });
-      console.log("dropZone accepted elements: ", dropZoneAcceptedElements);
-      console.log("dropZoneElements: ", dropZoneElements);
-
-      const hasMissingElement = dropZoneElements.some(element => !dropZoneAcceptedElements.includes(element));
-
-      if (hasMissingElement) {
-        console.log("some of the dropzone elements are not accepted");
-        if (dropZoneStyle !== dropzone_have_one_or_more_bad_elements_style) {
-          setDropZoneStyle(dropzone_have_one_or_more_bad_elements_style);
-        }
-      } else {
-        console.log("all of the dropzone elements are accepted");
-        if (dropZoneStyle !== dropzone_is_healthy_style) {
-          setDropZoneStyle(dropzone_is_healthy_style);
-        }
-      }         
-    } else {
-      console.log("dropZoneMovableElements is empty");
-      if (dropZoneStyle !== dropzone_no_elements_style) {
-        setDropZoneStyle(dropzone_no_elements_style);
-      }
-
-    }
-
-  }, [elementMoved, dropZoneStyle, dropZoneMovableElements]);
-
-
 
   useEffect(() => {
     const dropzoneElement = dropzoneRef.current;
