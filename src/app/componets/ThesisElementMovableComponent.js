@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import interact from 'interactjs';
 
-const ThesisElementMovableComponent = ({index, element, handleMovableElementDrop}) => {
+const ThesisElementMovableComponent = ({index, element, handleMovableElementDrop, elementMoved}) => {
   const draggableRef = useRef(null);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const ThesisElementMovableComponent = ({index, element, handleMovableElementDrop
             if (droppedZone != null) {
                 droppedZoneId = droppedZone.id;
             } 
-            console.log("comming from moved element droppedZone: ", droppedZoneId);
+            console.log("==>> comming from moved element droppedZone: ", droppedZoneId);
 
             // get dropped element text
             const droppedElementText = event.target.innerText;
@@ -70,7 +70,9 @@ const ThesisElementMovableComponent = ({index, element, handleMovableElementDrop
         const divToRemove = event.target;
         if (divToRemove.classList.contains('movable_element')) {
             event.preventDefault();
-            handleMovableElementDrop(event.target.id, "DELETE",  null)
+            console.log("==>> comming from moved element handleDelete: ", event.target.id);
+            handleMovableElementDrop(event.target.id, "DELETE",  null);
+            
             divToRemove.remove();
         }
     };

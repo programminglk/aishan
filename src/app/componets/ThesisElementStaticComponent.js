@@ -3,7 +3,7 @@ import interact from 'interactjs';
 
 import ThesisElementMovableComponent from './ThesisElementMovableComponent';
 
-const ThesisElementStaticComponent = ({element, index, handleMovableElementDrop}) => {
+const ThesisElementStaticComponent = ({element, index, handleMovableElementDrop, elementMoved}) => {
 
   const [clonedElements, setClonedElements] = useState([]);
 
@@ -32,7 +32,8 @@ const ThesisElementStaticComponent = ({element, index, handleMovableElementDrop}
 
       <div className='relative'>
         {clonedElements.map((el, index) => (
-          <ThesisElementMovableComponent index={index} element={element} key={index} handleMovableElementDrop={handleMovableElementDrop}/>
+          <ThesisElementMovableComponent index={index} element={element} key={index} handleMovableElementDrop={handleMovableElementDrop}
+          elementMoved={elementMoved} />
         ))}
       </div>
     </div>    
