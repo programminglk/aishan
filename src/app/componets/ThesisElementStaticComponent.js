@@ -24,11 +24,11 @@ const ThesisElementStaticComponent = ({element, index, handleMovableElementDrop,
 
   return (
     <div>
-      <div onClick={handleClone} key={index} 
-          className='flex justify-center bg-green-200 pt-1 pb-1 pl-2 pr-2 m-2 rounded-md hover:bg-green-600 
+      <button onClick={handleClone} key={index} 
+          className='flex justify-center bg-gray-200 pt-0.5 pb-0.5 pl-2 pr-2 m-2 rounded-md hover:bg-gray-600 
           text-black hover:text-white text-sm border-2 border-gray-300 hover:cursor-pointer'>
         {element}
-      </div>
+      </button>
 
       <div className='relative'>
         {clonedElements.map((el, index) => (

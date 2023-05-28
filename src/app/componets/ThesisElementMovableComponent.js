@@ -90,8 +90,8 @@ const ThesisElementMovableComponent = ({index, element, handleMovableElementDrop
     <div ref={draggableRef}
         key={index}
         className='movable_element absolute z-50
-        flex justify-center bg-yellow-200 pt-0.5 pb-0.5 pl-2 pr-2 m-2 m-1 rounded-md hover:bg-yellow-600 
-         text-black hover:text-white text-sm border-2 border-gray-300'
+        flex justify-center bg-green-700 pt-0.5 pb-0.5 pl-2 pr-2 mt-0 ml-2 mr-2 rounded-md hover:bg-yellow-600 
+        text-white hover:text-white text-sm border-2 border-gray-300'
         id={'movable_' + element + '_' + index}
     >
         {element}

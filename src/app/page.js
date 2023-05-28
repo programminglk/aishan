@@ -147,12 +147,20 @@ export default function Home() {
       console.log("movableElementIdtoDropZoneMap: ", movableElementIdtoDropZoneMap);
       console.log("movableElementIdtoDropZoneMap[movableElementId]: ", movableElementIdtoDropZoneMap[movableElementId]);
       console.log("dropZoneAndMovableElementsSTATICObj: ", dropZoneAndMovableElementsSTATICObj);
+      console.log("dropZone: ", dropZone);
 
       allMovableElementIdsInMap.delete(movableElementId);
+      movableElementIdtoDropZoneMap[movableElementId] && dropZoneAndMovableElementsSTATICObj[movableElementIdtoDropZoneMap[movableElementId]].delete(movableElementId);
       movableElementIdtoDropZoneMap[movableElementId] && delete movableElementIdtoDropZoneMap[movableElementId];
-      dropZone && dropZoneAndMovableElementsSTATICObj[dropZone].delete(movableElementId);
+
+      // console.log("still in delete but after delete actions--")
+      // console.log("movableElementIdtoDropZoneMap: ", movableElementIdtoDropZoneMap);
+      // console.log("movableElementIdtoDropZoneMap[movableElementId]: ", movableElementIdtoDropZoneMap[movableElementId]);
+      // console.log("dropZoneAndMovableElementsSTATICObj: ", dropZoneAndMovableElementsSTATICObj);
+
       setElementMoved(elementMoved + 1);   
       calculateScore();  
+
     }
   
     // if movable element was not in a dropzone before, and now not in a dropZone, then do nothing
