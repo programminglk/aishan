@@ -7,14 +7,14 @@ const DropzoneThesisElementsComponent = ({element, index, dropZoneMovableElement
   const dropzoneRef = useRef(null);
 
   // DropZone Styles on various Occasions
-  const dropzone_no_elements_style = "flex flex-col ml-4 mt-0.5 mb-3 h-16 bg-gray-100 \
-  border-dashed border-2 border-gray-400 dropzone_abstract";
+  const dropzone_no_elements_style = "flex flex-col ml-0 mt-0.5 mb-3 h-16 bg-gray-100 \
+  border-dashed border-2 border-gray-300 dropzone_abstract";
 
-  const dropzone_have_one_or_more_bad_elements_style = "flex flex-col ml-4 mt-0.5 mb-3 h-16 bg-red-200 \
-  border-dashed border-2 border-gray-400 dropzone_abstract";
+  const dropzone_have_one_or_more_bad_elements_style = "flex flex-col ml-0 mt-0.5 mb-3 h-16 bg-red-200 \
+  border-dashed border-2 border-gray-300 dropzone_abstract";
 
-  const dropzone_is_healthy_style = "flex flex-col ml-4 mt-0.5 mb-3 h-16 bg-emerald-300 \
-  border-dashed border-2 border-gray-400 dropzone_abstract";
+  const dropzone_is_healthy_style = "flex flex-col ml-0 mt-0.5 mb-3 h-16 bg-emerald-300 \
+  border-dashed border-2 border-gray-300 dropzone_abstract";
 
   const [dropZoneStyle, setDropZoneStyle] = useState(dropzone_no_elements_style);
 

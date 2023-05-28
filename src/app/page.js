@@ -41,14 +41,21 @@ export default function Home() {
     console.log("in calculateScore");
     var reward = 0;
     Object.entries(dropZoneAndMovableElementsSTATICObj).forEach(([key, value]) => {
+      var temp_el = [] // to check if there is a duplicate element in a dropzone, if so reduce marks
       value && value.forEach((id) => {
 
         let startIndex = id.indexOf("_") + 1; // Find the index of the first "_" and add 1 to exclude it
         let endIndex = id.lastIndexOf("_"); // Find the index of the last "_"
         let el = id.substring(startIndex, endIndex);
 
-        if (app_vals.dropzone_thesis_element_scores[key][el] !== undefined) {
-          reward += app_vals.dropzone_thesis_element_scores[key][el][0];
+        if (temp_el.includes(el)) {
+          reward -= 10;
+          console.log("There is a duplicate element in a dropzone, so reducing marks !!")
+        } else {
+          temp_el.push(el);
+          if (app_vals.dropzone_thesis_element_scores[key][el] !== undefined) {
+            reward += app_vals.dropzone_thesis_element_scores[key][el][0];
+          }
         }
       });
     });
@@ -182,9 +189,12 @@ export default function Home() {
         
         {/* left panel. i.e Instruction, bag of elements, and score and info section */}
         <div className='flex flex-col bg-gray-500 p-2 items-center sm:w-3/12 sm:items-start sm:min-h-screen'>
-          <p className='text-lg text-white sm:pt-5 sm:pl-2'> Instructions </p>
-          <p className='text-sm text-white sm:pt-3 sm:pl-2'> - Left Mouse Button: To Create a Dragable Element </p>
-          <p className='text-sm text-white sm:pt-1 sm:pl-2 sm:pb-4'> - Right Mouse Button: To Delete a Dragable Element </p>
+          <p className='text-3xl text-white sm:pt-5 sm:pl-2 md:mt-3 md:mb-3'> Thesis Elements </p>
+          <hr className='w-full border-1 border-gray-200 my-2' />
+
+          <p className='text-lg text-white sm:pt-2 sm:pl-2'> Instructions </p>
+          <li className='text-sm text-white sm:pt-2 sm:pl-2'> Left Mouse Button: To Create a Dragable Element </li>
+          <li className='text-sm text-white sm:pt-1 sm:pl-2 sm:pb-4'> Right Mouse Button: To Delete a Dragable Element </li>
 
           <hr className='w-full border-1 border-gray-200 my-2' />
           
@@ -193,7 +203,7 @@ export default function Home() {
 
             {
               // app_vals.thesis_elements.sort(() => Math.random() - 0.5).map((element, index) => {
-              app_vals.thesis_elements.map((element, index) => {
+              app_vals.thesis_elements.sort().map((element, index) => {
                 return (
                   <ThesisElementStaticComponent element={element} index={index} key={index} handleMovableElementDrop={handleMovableElementDrop} 
                   elementMoved={elementMoved}
@@ -207,8 +217,8 @@ export default function Home() {
           <hr className='w-full border-1 border-gray-200 mt-12' />
 
           {/* Score Display section */}
-          <div className='flex flex-col w-full items-center'>
-            <p className='text-7xl text-white sm:pt-5 sm:mt-20'> {score.toFixed(2)}% </p>
+          <div className='flex flex-col w-full justify-cente items-center'>
+            <p className='text-5xl md:text-6xl lg:text-7xl text-white md:pt-2 lg-pt-5 md:mt-10 lg:mt-20'> {score.toFixed(2)}% </p>
           </div>
           
         </div>

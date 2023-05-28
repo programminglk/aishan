@@ -25,7 +25,7 @@ const ThesisElementStaticComponent = ({element, index, handleMovableElementDrop,
   return (
     <div>
       <button onClick={handleClone} key={index} 
-          className='flex justify-center bg-gray-200 pt-0.5 pb-0.5 pl-2 pr-2 m-2 rounded-md hover:bg-gray-600 
+          className='flex justify-center bg-gray-200 pt-0.5 pb-0.5 pl-1 lg:pl-2 pr-1 lg:pr-2 m-0.5 lg:m-2 rounded-md hover:bg-gray-600 
           text-black hover:text-white text-sm border-2 border-gray-300 hover:cursor-pointer'>
         {element}
       </button>

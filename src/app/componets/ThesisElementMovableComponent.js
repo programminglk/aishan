@@ -8,8 +8,7 @@ const ThesisElementMovableComponent = ({index, element, handleMovableElementDrop
     const draggableElement = draggableRef.current;
 
     interact(draggableElement).draggable({
-      // Set the draggable options here
-      // For example, you can specify the CSS class when dragging starts
+        inertia: true,
 
         onmove: (event) => {
             const target = event.target;
@@ -87,15 +86,15 @@ const ThesisElementMovableComponent = ({index, element, handleMovableElementDrop
   }, []);
 
   return (
-    <div ref={draggableRef}
+    <button ref={draggableRef}
         key={index}
         className='movable_element absolute z-50
-        flex justify-center bg-green-700 pt-0.5 pb-0.5 pl-2 pr-2 mt-0 ml-2 mr-2 rounded-md hover:bg-yellow-600 
-        text-white hover:text-white text-sm border-2 border-gray-300'
+        flex justify-center bg-yellow-400 pt-0.5 pb-0.5 pl-2 pr-2 mt-0 ml-2 mr-2 rounded-md hover:bg-yellow-600 
+        text-black hover:text-white text-sm border-2 border-gray-400'
         id={'movable_' + element + '_' + index}
     >
         {element}
-    </div>
+    </button>
    
   );
 };
