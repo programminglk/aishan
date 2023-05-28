@@ -31,7 +31,8 @@ const ThesisElementMovableComponent = ({index, element, handleMovableElementDrop
         },
 
         onstart: (event) => {
-            event.target.classList.add('dragging');
+            // event.target.classList.add('dragging');
+            event.preventDefault(); // Prevent default touch behavior    
         },
         // Remove the CSS class when dragging ends
         onend: (event) => {
