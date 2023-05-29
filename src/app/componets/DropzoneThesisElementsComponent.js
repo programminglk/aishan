@@ -38,7 +38,7 @@ const DropzoneThesisElementsComponent = ({element, index, dropZoneMovableElement
 
   return (
     <div className='flex flex-col'>    
-        <div className='flex flex-row rounded-sm w-1/4 justify-center pl-3 pr-3 pt-1 pb-1 bg-gray-700'>
+        <div className='flex flex-row rounded-sm w-2/5 sm:w-1/4 justify-center sm:pl-3 sm:pr-3 pt-1 pb-1 bg-gray-700'>
             <p className='text-md text-white'> {element} </p>
         </div>
 

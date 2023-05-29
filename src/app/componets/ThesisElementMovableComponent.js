@@ -8,8 +8,6 @@ const ThesisElementMovableComponent = ({index, element, handleMovableElementDrop
     const draggableElement = draggableRef.current;
 
     interact(draggableElement).draggable({
-        inertia: true,
-
         onmove: (event) => {
             const target = event.target;
             
@@ -32,7 +30,7 @@ const ThesisElementMovableComponent = ({index, element, handleMovableElementDrop
 
         onstart: (event) => {
             // event.target.classList.add('dragging');
-            event.preventDefault(); // Prevent default touch behavior    
+            // event.preventDefault(); // Prevent default touch behavior    
         },
         // Remove the CSS class when dragging ends
         onend: (event) => {
@@ -89,9 +87,10 @@ const ThesisElementMovableComponent = ({index, element, handleMovableElementDrop
   return (
     <button ref={draggableRef}
         key={index}
-        className='movable_element absolute z-50
-        flex justify-center bg-yellow-400 pt-0.5 pb-0.5 pl-2 pr-2 mt-0 ml-2 mr-2 rounded-md hover:bg-yellow-600 
-        text-black hover:text-white text-sm border-2 border-gray-400'
+        className='movable_element touch-none absolute z-50 flex justify-center bg-yellow-400 rounded-md
+        pt-0.5 pb-0.5 pl-1 sm:pl-2 pr-1 sm:pr-2 mt-0 ml-2 mr-1 sm:mr-2  
+        hover:bg-yellow-600  hover:text-white
+        text-black text-xs sm:text-sm border-2 border-gray-400'
         id={'movable_' + element + '_' + index}
     >
         {element}
